@@ -1,19 +1,28 @@
 workspace "kri"
-  configurations { "Debug", "Release" }
+  configurations { "debug", "release" }
   architecture "x86_64"
   location "build"
+
+group "vendor"
+  include "vendor/lua"
+group ""
 
 project "kri"
   kind "ConsoleApp"
   language "C"
-  targetdir "build/bin/%{cfg.buildcfg}"
+  staticruntime "on"
+
+  targetdir "%{wks.location}/bin/%{cfg.buildcfg}"
+  objdir "%{wks.location}/obj/%{cfg.buildcfg}"
 
   files { "src/**.h", "src/**.c" }
 
-  filter "configurations:Debug"
-    defines { "DEBUG" }
-    symbols "On"
+  includedirs { "vendor/lua" }
 
-  filter "configurations:Release"
-    defines { "NDEBUG" }
-    optimize "On"
+  links { "lua" }
+
+  filter "configurations:debug"
+    symbols "on"
+
+  filter "configurations:release"
+    optimize "on"
