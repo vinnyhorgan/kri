@@ -15,9 +15,16 @@ project "kri"
   targetdir "%{wks.location}/bin/%{cfg.buildcfg}"
   objdir "%{wks.location}/obj/%{cfg.buildcfg}"
 
-  files { "src/**.h", "src/**.c" }
+  files {
+    "src/**.h",
+    "src/**.c",
+    "vendor/miniz/miniz.c"
+  }
 
-  includedirs { "vendor/lua" }
+  includedirs {
+    "vendor/lua",
+    "vendor/miniz"
+  }
 
   links { "lua" }
 
