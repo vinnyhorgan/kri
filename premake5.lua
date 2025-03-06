@@ -5,6 +5,7 @@ workspace "kri"
 
 group "vendor"
   include "vendor/lua"
+  include "vendor/miniz"
 group ""
 
 project "kri"
@@ -17,8 +18,7 @@ project "kri"
 
   files {
     "src/**.h",
-    "src/**.c",
-    "vendor/miniz/miniz.c"
+    "src/**.c"
   }
 
   includedirs {
@@ -26,7 +26,13 @@ project "kri"
     "vendor/miniz"
   }
 
-  links { "lua" }
+  links {
+    "lua",
+    "miniz"
+  }
+
+  filter "system:linux"
+    links { "m" }
 
   filter "configurations:debug"
     symbols "on"

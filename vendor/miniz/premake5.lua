@@ -1,4 +1,4 @@
-project "lua"
+project "miniz"
   kind "StaticLib"
   language "C"
   staticruntime "on"
@@ -6,10 +6,9 @@ project "lua"
   targetdir "%{wks.location}/vendor/%{prj.name}/bin/%{cfg.buildcfg}"
   objdir "%{wks.location}/vendor/%{prj.name}/obj/%{cfg.buildcfg}"
 
-  files { "*.h", "*.c" }
+  defines { "MINIZ_NO_STDIO" }
 
-  filter "system:linux"
-    defines { "LUA_USE_LINUX" }
+  files { "*.h", "*.c" }
 
   filter "configurations:debug"
     symbols "on"
