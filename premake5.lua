@@ -9,10 +9,16 @@ group "vendor"
   include "vendor/miniz"
 group ""
 
+group "tools"
+  include "tools/embed"
+group ""
+
 project "kri"
   kind "ConsoleApp"
   language "C"
   staticruntime "on"
+
+  dependson { "embed" }
 
   targetdir "%{wks.location}/bin/%{cfg.buildcfg}"
   objdir "%{wks.location}/obj/%{cfg.buildcfg}"
@@ -35,6 +41,10 @@ project "kri"
   }
 
   filter "system:windows"
+    prebuildcommands {
+      "%{wks.location}/tools/embed/bin/%{cfg.buildcfg}/embed.exe"
+    }
+
     links {
       "psapi",
       "user32",
