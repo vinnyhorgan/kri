@@ -4,6 +4,7 @@ workspace "kri"
   location "build"
 
 group "vendor"
+  include "vendor/libuv"
   include "vendor/lua"
   include "vendor/miniz"
 group ""
@@ -22,14 +23,29 @@ project "kri"
   }
 
   includedirs {
+    "vendor/libuv/include",
     "vendor/lua",
     "vendor/miniz"
   }
 
   links {
+    "libuv",
     "lua",
     "miniz"
   }
+
+  filter "system:windows"
+    links {
+      "psapi",
+      "user32",
+      "advapi32",
+      "iphlpapi",
+      "userenv",
+      "ws2_32",
+      "dbghelp",
+      "ole32",
+      "shell32"
+    }
 
   filter "system:linux"
     links { "m" }
