@@ -1,5 +1,5 @@
 workspace "kri"
-  configurations { "debug", "release" }
+  configurations { "release", "debug" }
   architecture "x86_64"
   location "build"
 
@@ -42,7 +42,7 @@ project "kri"
 
   filter "system:windows"
     prebuildcommands {
-      "%{wks.location}/tools/embed/bin/%{cfg.buildcfg}/embed.exe"
+      "%{wks.location}/tools/embed/bin/%{cfg.buildcfg}/embed.exe ../data %{wks.location}/data.h"
     }
 
     links {
@@ -59,7 +59,7 @@ project "kri"
 
   filter "system:linux"
     prebuildcommands {
-      "%{wks.location}/tools/embed/bin/%{cfg.buildcfg}/embed"
+      "%{wks.location}/tools/embed/bin/%{cfg.buildcfg}/embed ../data %{wks.location}/data.h"
     }
 
     links { "m" }
