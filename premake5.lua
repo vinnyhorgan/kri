@@ -58,6 +58,10 @@ project "kri"
     }
 
   filter "system:linux"
+    prebuildcommands {
+      "%{wks.location}/tools/embed/bin/%{cfg.buildcfg}/embed"
+    }
+
     links { "m" }
 
   filter "configurations:debug"

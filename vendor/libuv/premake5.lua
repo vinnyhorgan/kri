@@ -24,6 +24,39 @@ project "libuv"
       "src/win/*.c"
     }
 
+  filter "system:not windows"
+    files {
+      "src/unix/async.c",
+      "src/unix/core.c",
+      "src/unix/dl.c",
+      "src/unix/fs.c",
+      "src/unix/getaddrinfo.c",
+      "src/unix/getnameinfo.c",
+      "src/unix/loop-watcher.c",
+      "src/unix/loop.c",
+      "src/unix/pipe.c",
+      "src/unix/poll.c",
+      "src/unix/process.c",
+      "src/unix/random-devurandom.c",
+      "src/unix/signal.c",
+      "src/unix/stream.c",
+      "src/unix/tcp.c",
+      "src/unix/thread.c",
+      "src/unix/tty.c",
+      "src/unix/udp.c"
+    }
+
+  filter "system:linux"
+    defines { "_GNU_SOURCE" }
+
+    files {
+      "src/unix/proctitle.c",
+      "src/unix/linux.c",
+      "src/unix/procfs-exepath.c",
+      "src/unix/random-getrandom.c",
+      "src/unix/random-sysctl-linux.c"
+    }
+
   filter "configurations:debug"
     symbols "on"
 
