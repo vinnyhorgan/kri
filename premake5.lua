@@ -5,6 +5,7 @@ workspace "kri"
 
 group "vendor"
   include "vendor/libuv"
+  include "vendor/lpeg"
   include "vendor/lua"
   include "vendor/miniz"
 group ""
