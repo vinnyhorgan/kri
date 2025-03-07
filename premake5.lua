@@ -29,6 +29,7 @@ project "kri"
   }
 
   includedirs {
+    "%{wks.location}",
     "vendor/libuv/include",
     "vendor/lua",
     "vendor/miniz"
